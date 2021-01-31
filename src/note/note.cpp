@@ -38,8 +38,13 @@ NoteName operator--(NoteName& note, int) {
     return current;
 }
 
-NoteName& operator+=(NoteName note, const byte& x) {
+NoteName& operator+=(NoteName& note, const byte& x) {
     note = note + x;
+    return note;
+}
+
+NoteName& operator-=(NoteName& note, const byte& x) {
+    note = note - x;
     return note;
 }
 
