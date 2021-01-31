@@ -13,6 +13,12 @@ enum class NoteName : byte { C, C_S, D, D_S, E, F, F_S, G, G_S, A, A_S, B };
  */
 NoteName operator+(NoteName note, byte x);
 /**
+ * Get the NoteName x semitones below the provided note.
+ * 
+ * @note x should not be greater than 12.
+ */
+NoteName operator-(NoteName note, byte x);
+/**
  * Set the current NoteName one semitone higher.
  */
 NoteName& operator++(NoteName& note);

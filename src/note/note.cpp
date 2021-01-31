@@ -9,6 +9,13 @@ NoteName operator+(NoteName note, byte x) {
     return static_cast<NoteName>(value);
 }
 
+NoteName operator-(NoteName note, byte x) {
+    byte value = (static_cast<byte>(note) + 12) - x;
+    if (value >= 12)
+        value -= 12;
+    return static_cast<NoteName>(value);
+}
+
 NoteName& operator++(NoteName& note) {
     note = note + 1;
     return note;
