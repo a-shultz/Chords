@@ -11,6 +11,10 @@ enum class NoteName : byte { C, C_S, D, D_S, E, F, F_S, G, G_S, A, A_S, B };
  */
 NoteName& operator++(NoteName& note);
 /**
+ * Return the current NoteName and set it one semitone higher.
+ */
+NoteName operator++(NoteName& note, int);
+/**
  * Get the note at the number of semitones above the provided 
  * note.
  * 
