@@ -1,2 +1,2 @@
 # Chords
-## A random chord progression CV generator/sequencer
+## A eurorack module for random CV chord progression generation and sequencing using the Arduino Nano Every
