@@ -42,32 +42,7 @@ NoteName& operator+=(NoteName& note, const byte& x);
  * Set the current NoteName x semitones lower.
  */
 NoteName& operator-=(NoteName& note, const byte& x);
-/**
- * Get the note at the number of semitones above the provided 
- * note.
- * 
- * Equivalent to (note + semitones) mod 12.
- * 
- * @param note note value 0 - 11.
- * @param semitones number of semitones to increase the note by.
- * 0 <= semitone <= 12.
- * @return note at the number of semitones above the provided 
- * note.
- */
-byte getNoteAscending(byte note, byte semitones);
-/**
- * Get the note at the number of semitones below the provided 
- * note.
- * 
- * Equivalent to (note - semitones) mod 12.
- * 
- * @param note note value 0 - 11.
- * @param semitones number of semitones to decrease the note by.
- * 0 <= semitone <= 12.
- * @return note at the number of semitones below the provided
- * note.
- */
-byte getNoteDescending(byte note, byte semitones);
+
 /**
  * Get the 12 bit representation of the note value with octave.
  * 

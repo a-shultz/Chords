@@ -2,16 +2,15 @@
 
 namespace note {
 
-void getProgression(ChordType chordType, byte* key, byte** progression) {
+void getProgression(ChordType chordType, NoteName* key, NoteName** progression) {
     byte current = 0;
     byte size = 0;
     do {
-        getChord(chordType, current, key, progression[++size]);
+        getChord(chordType, current, key, progression[size++]);
         current = getNextIndex(current);
     } while (current != 0 && size < MAX_PROGRESSION_LENGTH);
     if (current != 0 && (current == 2 || current == 5))
-        getChord(chordType, 3, key, progression[++size]);
-    progression[0][0] = size;
+        getChord(chordType, 3, key, progression[size++]);
 }
 
 byte getNextIndex(byte current) {
