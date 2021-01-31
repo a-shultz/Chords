@@ -7,6 +7,12 @@ namespace note {
 /*! @brief Note names */
 enum class NoteName : byte { C, C_S, D, D_S, E, F, F_S, G, G_S, A, A_S, B };
 /**
+ * Get the NoteName x semitones above the provided note.
+ * 
+ * @note x should not be greater than 12.
+ */
+NoteName operator+(NoteName note, byte x);
+/**
  * Set the current NoteName one semitone higher.
  */
 NoteName& operator++(NoteName& note);
@@ -14,12 +20,6 @@ NoteName& operator++(NoteName& note);
  * Return the current NoteName and set it one semitone higher.
  */
 NoteName operator++(NoteName& note, int);
-/**
- * Get the NoteName x semitones above the provided note.
- * 
- * @note x should not be greater than 12.
- */
-NoteName operator+(NoteName note, byte x);
 /**
  * Get the note at the number of semitones above the provided 
  * note.
