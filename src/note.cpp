@@ -2,14 +2,14 @@
 
 namespace note {
 
-byte ascend(byte note, byte semitones) {
+byte getNoteAscending(byte note, byte semitones) {
     byte newNote = note + semitones;
     if (newNote < 12)
         return newNote;
     return newNote - 12;
 }
 
-byte descend(byte note, byte semitones) {
+byte getNoteDescending(byte note, byte semitones) {
     byte newNote = (note + 12) - semitones;
     if (newNote < 12)
         return newNote;
@@ -22,24 +22,24 @@ int get12BitNote(byte note, byte octave) {
 
 void getKeyMajor(byte root, byte* key) {
     key[0] = root;
-    key[1] = ascend(root, 2);
-    key[2] = ascend(root, 4);
-    key[3] = ascend(root, 5);
-    key[4] = ascend(root, 7);
-    key[5] = ascend(root, 9);
-    key[6] = ascend(root, 11);
-    key[7] = ascend(root, 12);
+    key[1] = getNoteAscending(root, 2);
+    key[2] = getNoteAscending(root, 4);
+    key[3] = getNoteAscending(root, 5);
+    key[4] = getNoteAscending(root, 7);
+    key[5] = getNoteAscending(root, 9);
+    key[6] = getNoteAscending(root, 11);
+    key[7] = getNoteAscending(root, 12);
 }
 
 void getKeyMinor(byte root, byte* key) {
     key[0] = root;
-    key[1] = ascend(root, 2);
-    key[2] = ascend(root, 3);
-    key[3] = ascend(root, 5);
-    key[4] = ascend(root, 7);
-    key[5] = ascend(root, 8);
-    key[6] = ascend(root, 10);
-    key[7] = ascend(root, 12);
+    key[1] = getNoteAscending(root, 2);
+    key[2] = getNoteAscending(root, 3);
+    key[3] = getNoteAscending(root, 5);
+    key[4] = getNoteAscending(root, 7);
+    key[5] = getNoteAscending(root, 8);
+    key[6] = getNoteAscending(root, 10);
+    key[7] = getNoteAscending(root, 12);
 }
 void getChord(byte rootIndex, byte* key, byte* chord) {
     chord[0] = key[rootIndex]; 
