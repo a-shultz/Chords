@@ -27,6 +27,11 @@ NoteName operator++(NoteName& note, int) {
     return current;
 }
 
+NoteName& operator++(NoteName& note) {
+    note = note - 1;
+    return note;
+}
+
 byte getNoteAscending(byte note, byte semitones) {
     byte newNote = note + semitones;
     if (newNote < 12)

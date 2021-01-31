@@ -27,6 +27,10 @@ NoteName& operator++(NoteName& note);
  */
 NoteName operator++(NoteName& note, int);
 /**
+ * Set the current NoteName one semitone lower.
+ */
+NoteName& operator--(NoteName& note);
+/**
  * Get the note at the number of semitones above the provided 
  * note.
  * 
