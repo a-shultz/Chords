@@ -2,6 +2,14 @@
 
 namespace note {
 
+NoteName& operator++(NoteName& note) {
+    byte value = static_cast<byte>(note) + 1;
+    if (value >= 12)
+        value -= 12;
+    note = static_cast<NoteName>(value);
+    return note;
+}
+
 byte getNoteAscending(byte note, byte semitones) {
     byte newNote = note + semitones;
     if (newNote < 12)
