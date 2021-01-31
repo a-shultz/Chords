@@ -2,6 +2,13 @@
 
 namespace note {
 
+NoteName operator+(NoteName note, byte x) {
+    byte value = static_cast<byte>(note) + x;
+    if (value >= 12)
+        value -= 12;
+    return static_cast<NoteName>(value);
+}
+
 NoteName& operator++(NoteName& note) {
     byte value = static_cast<byte>(note) + 1;
     if (value >= 12)

@@ -15,6 +15,12 @@ NoteName& operator++(NoteName& note);
  */
 NoteName operator++(NoteName& note, int);
 /**
+ * Get the NoteName x semitones above the provided note.
+ * 
+ * @note x should not be greater than 12.
+ */
+NoteName operator+(NoteName note, byte x);
+/**
  * Get the note at the number of semitones above the provided 
  * note.
  * 
