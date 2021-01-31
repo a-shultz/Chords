@@ -38,6 +38,11 @@ NoteName operator--(NoteName& note, int) {
     return current;
 }
 
+NoteName& operator+=(NoteName note, const byte& x) {
+    note = note + x;
+    return note;
+}
+
 byte getNoteAscending(byte note, byte semitones) {
     byte newNote = note + semitones;
     if (newNote < 12)

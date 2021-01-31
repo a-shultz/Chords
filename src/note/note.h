@@ -35,6 +35,10 @@ NoteName& operator--(NoteName& note);
  */
 NoteName operator++(NoteName& note, int);
 /**
+ * Set the current NoteName x semitones higher.
+ */
+NoteName& operator+=(NoteName note, const byte& x);
+/**
  * Get the note at the number of semitones above the provided 
  * note.
  * 
