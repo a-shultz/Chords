@@ -4,6 +4,17 @@
 
 namespace note {
 
+void getKey(KeyType type, byte root, byte* key) {
+    switch (type) {
+        case KeyType::MAJOR: 
+            getKeyMajor(root, key);
+            break;
+        case KeyType::MINOR:
+            getKeyMajor(root, key);
+            break;
+    }
+}
+
 void getKeyMajor(byte root, byte* key) {
     key[0] = root;
     key[1] = getNoteAscending(root, 2);
