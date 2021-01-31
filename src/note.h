@@ -40,8 +40,6 @@ byte descend(byte note, byte semitones);
  * @return 12 bir representation of the note.
  */
 int get12BitNote(byte note, byte octave);
-
-namespace key {
 /**
  * Assign the major key for the provided root note to the provided
  * array pointer.
@@ -49,7 +47,7 @@ namespace key {
  * @param root root note for key.
  * @param key array pointer to copy key notes to.
  */
-void getMajor(byte root, byte* key);
+void getKeyMajor(byte root, byte* key);
 /**
  * Assign the minor key for the provided root note to the provided
  * array pointer.
@@ -57,10 +55,7 @@ void getMajor(byte root, byte* key);
  * @param root root note for key.
  * @param key array pointer to copy key notes to.
  */
-void getMinor(byte root, byte* key);
-} // namespace key
-
-namespace chord {
+void getKeyMinor(byte root, byte* key);
 /**
  * Assign the chord at the root index in a key to the array 
  * pointer.
@@ -69,7 +64,7 @@ namespace chord {
  * @param key pointer to array containing the key notes.
  * @param chord pointer to array to assign chord notes to.
  */
-void get(byte rootIndex, byte* key, byte* chord);
+void getChord(byte rootIndex, byte* key, byte* chord);
 /**
  * Get random chord progression between 2 and 5 chords long.
  * 
@@ -79,6 +74,5 @@ void get(byte rootIndex, byte* key, byte* chord);
  */
 void getProgression(byte* key, byte** progression);
 } // namespace chord
-} // namespace note
 
 #endif /* NOTE_H */
