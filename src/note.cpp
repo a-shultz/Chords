@@ -20,9 +20,7 @@ int get12BitNote(byte note, byte octave) {
     return (int) round((float) (note * octave) * 34.1333333);
 }
 
-namespace key {
-
-void getMajor(byte root, byte* key) {
+void getKeyMajor(byte root, byte* key) {
     key[0] = root;
     key[1] = ascend(root, 2);
     key[2] = ascend(root, 4);
@@ -33,7 +31,7 @@ void getMajor(byte root, byte* key) {
     key[7] = ascend(root, 12);
 }
 
-void getMinor(byte root, byte* key) {
+void getKeyMinor(byte root, byte* key) {
     key[0] = root;
     key[1] = ascend(root, 2);
     key[2] = ascend(root, 3);
@@ -43,12 +41,7 @@ void getMinor(byte root, byte* key) {
     key[6] = ascend(root, 10);
     key[7] = ascend(root, 12);
 }
-
-} // namespace key
-
-namespace chord {
-
-void get(byte rootIndex, byte* key, byte* chord) {
+void getChord(byte rootIndex, byte* key, byte* chord) {
     chord[0] = key[rootIndex]; 
     chord[1] = key[getNoteIndex(rootIndex + 2)];
     chord[2] = key[getNoteIndex(rootIndex + 4)];
@@ -59,11 +52,11 @@ void getProgression(byte* key, byte** progression) {
     byte current = 0;
     byte size = 0;
     do {
-        get(current, key, progression[++size]);
+        getChord(current, key, progression[++size]);
         current = getNextIndex(current);
     } while (current != 0 && size < MAX_CHORD_PROGRESSION_LENGTH);
     if (current != 0 && (current == 2 || current == 5))
-        get(3, key, progression[++size]);
+        getChord(3, key, progression[++size]);
     progression[0][0] = size;
 }
 
@@ -95,7 +88,5 @@ byte getNoteIndex(byte index) {
         return index;
     return index - 8;
 }
-
-} // namespace chord
 
 } // namespace note
