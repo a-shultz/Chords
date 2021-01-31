@@ -41,22 +41,40 @@ void getKeyMinor(byte root, byte* key) {
     key[6] = getNoteAscending(root, 10);
     key[7] = getNoteAscending(root, 12);
 }
-void getChord(byte rootIndex, byte* key, byte* chord) {
+
+void getChord(ChordType type, byte rootIndex, byte* key, byte* chord) {
+    switch (type) {
+        case ChordType::TRIAD: 
+            getChordTriad(rootIndex, key, chord);
+            break;
+        case ChordType::SEVENTH:
+            getChordSeventh(rootIndex, key, chord);
+            break;
+    }
+}
+
+void getChordTriad(byte rootIndex, byte* key, byte* chord) {
+    chord[0] = key[rootIndex]; 
+    chord[1] = key[getNoteIndex(rootIndex + 2)];
+    chord[2] = key[getNoteIndex(rootIndex + 4)];
+}
+
+void getChordSeventh(byte rootIndex, byte* key, byte* chord) {
     chord[0] = key[rootIndex]; 
     chord[1] = key[getNoteIndex(rootIndex + 2)];
     chord[2] = key[getNoteIndex(rootIndex + 4)];
     chord[3] = key[getNoteIndex(rootIndex + 6)];
 }
 
-void getProgression(byte* key, byte** progression) {
+void getProgression(ChordType chordType, byte* key, byte** progression) {
     byte current = 0;
     byte size = 0;
     do {
-        getChord(current, key, progression[++size]);
+        getChord(chordType, current, key, progression[++size]);
         current = getNextIndex(current);
     } while (current != 0 && size < MAX_CHORD_PROGRESSION_LENGTH);
     if (current != 0 && (current == 2 || current == 5))
-        getChord(3, key, progression[++size]);
+        getChord(chordType, 3, key, progression[++size]);
     progression[0][0] = size;
 }
 

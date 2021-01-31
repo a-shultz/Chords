@@ -6,6 +6,17 @@
 #include <Arduino.h>
 
 namespace note {
+/*! @brief Type of chord.
+ *
+ * Each type refers to a different format for indexing the key to
+ * create a chord.
+ * 
+ * symbol  | index format
+ * ------- | ------
+ * TRIAD   | [0, 2, 4]
+ * SEVENTH | [0, 2, 4, 6]
+ */
+enum class ChordType { TRIAD, SEVENTH };
 /**
  * Get the note at the number of semitones above the provided 
  * note.
@@ -18,7 +29,7 @@ namespace note {
  * @return note at the number of semitones above the provided 
  * note.
  */
-byte ascend(byte note, byte semitones);
+byte getNoteAscending(byte note, byte semitones);
 /**
  * Get the note at the number of semitones below the provided 
  * note.
@@ -31,7 +42,7 @@ byte ascend(byte note, byte semitones);
  * @return note at the number of semitones below the provided
  * note.
  */
-byte descend(byte note, byte semitones);
+byte getNoteDescending(byte note, byte semitones);
 /**
  * Get the 12 bit representation of the note value with octave.
  * 
@@ -57,22 +68,39 @@ void getKeyMajor(byte root, byte* key);
  */
 void getKeyMinor(byte root, byte* key);
 /**
- * Assign the chord at the root index in a key to the array 
- * pointer.
+ * Get the chord for the root note within a key.
  * 
- * @param rootIndex index of the root note in the chord.
- * @param key pointer to array containing the key notes.
- * @param chord pointer to array to assign chord notes to.
+ * @param type type of chord.
+ * @param rootIndex index of the root note for the chord.
+ * @param key pointer to the chord's key.
+ * @param chord pointer to the target destination.
  */
-void getChord(byte rootIndex, byte* key, byte* chord);
+void getChord(ChordType type, byte rootIndex, byte* key, byte* chord);
 /**
- * Get random chord progression between 2 and 5 chords long.
+ * Get the triad chord for the root note within the provided key.
  * 
+ * @param rootIndex index of the root note for the chord.
+ * @param key pointer to the chord's key.
+ * @param chord pointer to the target destination of the key.
+ */
+void getChordTriad(byte rootIndex, byte* key, byte* chord);
+/**
+ * Get the seventh chord for the root note within the provided key.
+ * 
+ * @param rootIndex index of the root note for the chord.
+ * @param key pointer to the chord's key.
+ * @param chord pointer to the target destination of the key.
+ */
+void getChordSeventh(byte rootIndex, byte* key, byte* chord);
+/**
+ * Get a random chord progression between 2 and 5 chords long.
+ * 
+ * @param chordType the type of chord to generate.
  * @param key chord key
  * @param progression 6 x 4 array to hold progression chord notes.
  * progression[0][0] contains the resulting size of progression.
  */
-void getProgression(byte* key, byte** progression);
+void getProgression(ChordType chordType, byte* key, byte** progression);
 } // namespace chord
 
 #endif /* NOTE_H */
