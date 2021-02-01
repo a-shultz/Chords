@@ -1,5 +1,7 @@
 #include "note.h"
 
+#include <cmath>
+
 namespace note {
 
 NoteName operator+(NoteName note, byte x) {
@@ -48,8 +50,8 @@ NoteName& operator-=(NoteName& note, const byte& x) {
     return note;
 }
 
-int get12BitNote(byte note, byte octave) {
-    return (int) round((float) (note * octave) * 34.1333333);
+int get12BitNote(NoteName note, byte octave) {
+    return (int) std::round((float) (static_cast<byte>(note) + (12 * octave)) * 34.1333333);
 }
 
 } // namespace note
