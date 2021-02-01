@@ -1,35 +1,39 @@
 #include "chord.h"
 
+#include "key.h"
+
 namespace note {
 
-void getChord(ChordType type, byte rootIndex, NoteName* key, NoteName* chord) {
+NoteName getKeyNote(byte index);
+
+void getChord(ChordType type, byte rootIndex, NoteName* chord) {
     switch (type) {
         case ChordType::TRIAD: 
-            getChordTriad(rootIndex, key, chord);
+            getChordTriad(rootIndex, chord);
             break;
         case ChordType::SEVENTH:
-            getChordSeventh(rootIndex, key, chord);
+            getChordSeventh(rootIndex, chord);
             break;
     }
 }
 
-void getChordTriad(byte rootIndex, NoteName* key, NoteName* chord) {
-    chord[0] = key[rootIndex]; 
-    chord[1] = key[getNoteIndex(rootIndex + 2)];
-    chord[2] = key[getNoteIndex(rootIndex + 4)];
+void getChordTriad(byte rootIndex, NoteName* chord) {
+    chord[0] = getKeyNote(rootIndex); 
+    chord[1] = getKeyNote(rootIndex + 2);
+    chord[2] = getKeyNote(rootIndex + 4);
 }
 
-void getChordSeventh(byte rootIndex, NoteName* key, NoteName* chord) {
-    chord[0] = key[rootIndex]; 
-    chord[1] = key[getNoteIndex(rootIndex + 2)];
-    chord[2] = key[getNoteIndex(rootIndex + 4)];
-    chord[3] = key[getNoteIndex(rootIndex + 6)];
+void getChordSeventh(byte rootIndex, NoteName* chord) {
+    chord[0] = getKeyNote(rootIndex); 
+    chord[1] = getKeyNote(rootIndex + 2);
+    chord[2] = getKeyNote(rootIndex + 4);
+    chord[3] = getKeyNote(rootIndex + 6);
 }
 
-byte getNoteIndex(byte index) {
+NoteName getKeyNote(byte index) {
     if (index < 8)
-        return index;
-    return index - 8;
+        return key[index];
+    return key[index - 8];
 }
 
 } // namespace note

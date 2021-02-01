@@ -1,2 +1,5 @@
 .vscode/
 chords.code-workspace
+scripts/test/output/
+scripts/test/*.o
+scripts/test/test

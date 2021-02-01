@@ -1,9 +1,25 @@
 #ifndef KEY_H
 #define KEY_H
 
+#ifdef ARDUINO_VERSION
 #include <Arduino.h>
+#else
+#include <stdint.h>
+typedef uint8_t byte;
+#endif
+
+#include <stdlib.h> 
+
+#include "note.h"
+
+#define MAJOR_KEY_LENGTH 8
+#define MINOR_KEY_LENGTH 8
 
 namespace note {
+/*! @brief Current key */
+extern NoteName* key;
+/*! @brief Current key length */
+extern byte keyLength;
 /*! @brief Type of key. */
 enum class KeyType : byte { MAJOR, MINOR };
 /**
@@ -13,7 +29,7 @@ enum class KeyType : byte { MAJOR, MINOR };
  * @param root root note.
  * @param key pointer to target destination.
  */
-void getKey(KeyType type, NoteName root, NoteName* key);
+NoteName* getKey(KeyType type, NoteName root);
 /**
  * Assign the major key for the provided root note to the provided
  * array pointer.
@@ -21,7 +37,7 @@ void getKey(KeyType type, NoteName root, NoteName* key);
  * @param root root note for key.
  * @param key array pointer to copy key notes to.
  */
-void getKeyMajor(NoteName root, NoteName* key);
+NoteName* getKeyMajor(NoteName root);
 /**
  * Assign the minor key for the provided root note to the provided
  * array pointer.
@@ -29,7 +45,7 @@ void getKeyMajor(NoteName root, NoteName* key);
  * @param root root note for key.
  * @param key array pointer to copy key notes to.
  */
-void getKeyMinor(NoteName root, NoteName* key);
+NoteName* getKeyMinor(NoteName root);
 } // namespace note
 
 #endif /* KEY_H */

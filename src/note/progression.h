@@ -1,7 +1,17 @@
 #ifndef PROGRESSION_H
 #define PROGRESSION_H
 
+#ifdef ARDUINO_VERSION
 #include <Arduino.h>
+#else
+#include <stdint.h>
+#include <stdlib.h>
+
+typedef uint8_t byte;
+
+#define random(min, max) static_cast<byte>(rand()) % max + min
+
+#endif
 
 #include "chord.h"
 #include "note.h"

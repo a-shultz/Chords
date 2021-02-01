@@ -1,7 +1,12 @@
 #ifndef NOTE_H
 #define NOTE_H
 
+#ifdef ARDUINO_VERSION
 #include <Arduino.h>
+#else
+#include <stdint.h>
+typedef uint8_t byte;
+#endif
 
 namespace note {
 /*! @brief Note names */
@@ -33,7 +38,7 @@ NoteName& operator--(NoteName& note);
 /**
  * Return the current NoteName and set it one semitone higher.
  */
-NoteName operator++(NoteName& note, int);
+NoteName operator--(NoteName& note, int);
 /**
  * Set the current NoteName x semitones higher.
  */
@@ -46,11 +51,11 @@ NoteName& operator-=(NoteName& note, const byte& x);
 /**
  * Get the 12 bit representation of the note value with octave.
  * 
- * @param note note value 0 - 11.
+ * @param note note name value.
  * @param octave value between 1 and 10.
  * @return 12 bir representation of the note.
  */
-int get12BitNote(byte note, byte octave);
+int get12BitNote(NoteName note, byte octave);
 } // namespace note
 
 #endif /* NOTE_H */

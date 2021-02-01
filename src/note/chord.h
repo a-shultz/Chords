@@ -1,7 +1,12 @@
 #ifndef CHORD_H
 #define CHORD_H
 
+#ifdef ARDUINO_VERSION
 #include <Arduino.h>
+#else
+#include <stdint.h>
+typedef uint8_t byte;
+#endif
 
 #include "note.h"
 
@@ -25,7 +30,7 @@ enum class ChordType { TRIAD, SEVENTH };
  * @param key pointer to the chord's key.
  * @param chord pointer to the target destination.
  */
-void getChord(ChordType type, byte rootIndex, NoteName* key, NoteName* chord);
+void getChord(ChordType type, byte rootIndex, NoteName* chord);
 /**
  * Get the triad chord for the root note within the provided key.
  * 
@@ -33,7 +38,7 @@ void getChord(ChordType type, byte rootIndex, NoteName* key, NoteName* chord);
  * @param key pointer to the chord's key.
  * @param chord pointer to the target destination of the key.
  */
-void getChordTriad(byte rootIndex, NoteName* key, NoteName* chord);
+void getChordTriad(byte rootIndex, NoteName* chord);
 /**
  * Get the seventh chord for the root note within the provided key.
  * 
@@ -41,7 +46,7 @@ void getChordTriad(byte rootIndex, NoteName* key, NoteName* chord);
  * @param key pointer to the chord's key.
  * @param chord pointer to the target destination of the key.
  */
-void getChordSeventh(byte rootIndex, NoteName* key, NoteName* chord);
+void getChordSeventh(byte rootIndex, NoteName* chord);
 } // namespace note
 
 #endif /* CHORD_H */
