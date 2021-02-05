@@ -3,6 +3,10 @@
 
 #include <Arduino.h>
 
+#include "chord.h"
+#include "note.h"
+#include "../random/rng-16.h"
+
 #define MOD6(x) ({ \
     asm volatile ( \
             "andi %0, 0x07 \n" \
@@ -50,10 +54,6 @@
     ); \
     x; \
 })
-
-#include "chord.h"
-#include "note.h"
-#include "../random/rng-16.h"
 
 namespace note {
 /*! Maximum chord progression length */

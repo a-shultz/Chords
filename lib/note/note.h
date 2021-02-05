@@ -1,12 +1,7 @@
 #ifndef NOTE_H
 #define NOTE_H
 
-#ifdef ARDUINO_VERSION
 #include <Arduino.h>
-#else
-#include <stdint.h>
-typedef uint8_t byte;
-#endif
 
 namespace note {
 /*! @brief Note names */
