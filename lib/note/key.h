@@ -1,12 +1,7 @@
 #ifndef KEY_H
 #define KEY_H
 
-#ifdef ARDUINO_VERSION
 #include <Arduino.h>
-#else
-#include <stdint.h>
-typedef uint8_t byte;
-#endif
 
 #include <stdlib.h> 
 

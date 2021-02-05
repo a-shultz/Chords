@@ -1,12 +1,7 @@
 #ifndef CHORD_H
 #define CHORD_H
 
-#ifdef ARDUINO_VERSION
 #include <Arduino.h>
-#else
-#include <stdint.h>
-typedef uint8_t byte;
-#endif
 
 #include "note.h"
 
